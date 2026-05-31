@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Cosmohentorq — StartupTN Funding Deck 2025</title>
+<title>Cosmohentorq — StartupTN Funding Deck 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -353,20 +353,69 @@ nav{
 .stagger .fade-up:nth-child(3){transition-delay:.2s}
 .stagger .fade-up:nth-child(4){transition-delay:.3s}
 
+/* ── RESPONSIVE ── */
+
+/* Tablet ≤ 900px */
 @media(max-width:900px){
-  nav{padding:12px 20px}
+  nav{padding:10px 16px;gap:8px}
   .nav-links{display:none}
+  .nav-burger{display:flex}
   .slide{padding:80px 24px 60px}
   .cover-grid,.problem-grid,.biz-grid,.founder-inner,.whytn-inner{grid-template-columns:1fr}
   .sol-grid,.market-grid,.alloc-grid,.traction-top,.prod-grid{grid-template-columns:1fr 1fr}
   .exp-grid{grid-template-columns:1fr 1fr}
+  .h1{font-size:clamp(28px,6vw,52px)}
+  .h2{font-size:clamp(22px,5vw,38px)}
+  .body-lg{font-size:16px}
 }
-@media(max-width:600px){
+
+/* Phone ≤ 640px */
+@media(max-width:640px){
+  nav{padding:0 14px;height:50px}
+  .nav-brand{font-size:12px}
+  .nav-cta{font-size:11px;padding:7px 12px}
+  .slide{padding:64px 18px 48px}
+  .slide+.slide{padding-top:60px}
+  .h1{font-size:clamp(26px,7vw,40px);letter-spacing:-0.5px}
+  .h2{font-size:clamp(20px,6vw,30px)}
+  .h3{font-size:clamp(16px,5vw,22px)}
+  .body-lg{font-size:15px}
+  .body-sm{font-size:13px}
   .sol-grid,.market-grid,.alloc-grid,.traction-top{grid-template-columns:1fr}
   .prod-grid{grid-template-columns:1fr}
-  .ask-banner{flex-direction:column;gap:20px}
+  .ask-banner{flex-direction:column;gap:16px;text-align:center}
   .slide-num{display:none}
+  .cover-badges{flex-wrap:wrap;gap:8px}
+  .badge{font-size:10px;padding:5px 10px}
+  .label{font-size:9px;letter-spacing:2px}
+  .metric-pill{font-size:11px;padding:7px 12px}
 }
+
+/* Small phones ≤ 420px */
+@media(max-width:420px){
+  nav{padding:0 12px}
+  .slide{padding:56px 14px 44px}
+  .h1{font-size:clamp(22px,8vw,34px)}
+  .h2{font-size:clamp(18px,7vw,26px)}
+  .cover-badges{gap:6px}
+}
+
+/* Prevent horizontal scroll */
+html,body{max-width:100%;overflow-x:hidden}
+img,video,svg,table{max-width:100%}
+
+/* Mobile nav drawer */
+.nav-burger{display:none;flex-direction:column;gap:4px;padding:8px 4px;cursor:pointer;border:none;background:none;flex-shrink:0}
+.nav-burger span{display:block;width:20px;height:1.5px;background:var(--muted);border-radius:2px;transition:.3s}
+.nav-burger.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+.nav-drawer{display:none;position:fixed;top:50px;left:0;right:0;background:rgba(247,244,238,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);padding:12px 16px 20px;flex-direction:column;gap:4px;z-index:99}
+.nav-drawer.open{display:flex}
+.nav-drawer a{font-size:14px;font-weight:500;color:var(--muted);padding:11px 14px;border-radius:8px;text-decoration:none;transition:.2s;letter-spacing:.3px}
+.nav-drawer a:hover,.nav-drawer a:active{background:rgba(14,14,18,.06);color:var(--ink)}
+.nav-drawer .d-cta{background:var(--accent);color:#fff;font-weight:700;text-align:center;margin-top:6px;border-radius:8px}
+.nav-drawer .d-cta:hover{background:var(--navy)}
 </style>
 </head>
 <body>
@@ -382,8 +431,20 @@ nav{
     <a href="#funduse">Funding</a>
     <a href="#cta">Contact</a>
   </div>
+  <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   <a class="nav-cta" href="mailto:labs@cosmohentorq.com?subject=StartupTN%20Funding%20Interest%20-%20Cosmohentorq&body=Hi%20Hariharan%2C%0A%0AI%20came%20across%20your%20StartupTN%20pitch%20deck%20and%20would%20like%20to%20discuss%20funding%20opportunities.%0A%0ARegards">📩 Fund Us</a>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="drawer">
+  <a href="#problem" onclick="closeMenu()">Problem</a>
+  <a href="#solution" onclick="closeMenu()">Solution</a>
+  <a href="#products" onclick="closeMenu()">Products</a>
+  <a href="#founder" onclick="closeMenu()">Founder</a>
+  <a href="#funduse" onclick="closeMenu()">Funding</a>
+  <a href="#cta" onclick="closeMenu()">Contact</a>
+  <a href="mailto:labs@cosmohentorq.com" class="d-cta" onclick="closeMenu()">Fund Us →</a>
+</div>
 
 <!-- ══ 01 COVER ══ -->
 <section class="slide" id="cover">
@@ -393,7 +454,7 @@ nav{
     <div class="cover-grid">
       <div>
         
-        <div class="label">StartupTN Funding Application — 2025</div>
+        <div class="label">StartupTN Funding Application — 2026</div>
         <h1 class="h1">Building India's<br>Next AI &amp;<br>Tech Empire.</h1>
         <p class="body-lg" style="margin-top:24px">Cosmohentorq Innovations — Chennai's lean, DPIIT-registered startup engineering AI products, Govt. citizen platforms &amp; infrastructure from day one.</p>
         <div class="cover-badges" style="margin-top:28px">
@@ -485,7 +546,7 @@ nav{
           <li>Speech-to-text via Whisper (100% local)</li>
           <li>Voice response via Microsoft Edge TTS</li>
           <li>Password-protected, zero-cloud data storage</li>
-          <li>B2B SaaS licensing model planned Q3 2025</li>
+          <li>B2B SaaS licensing model planned Q3 2026</li>
         </ul>
       </div>
       <div class="prod-card fade-up">
@@ -579,7 +640,7 @@ nav{
       <div class="milestone"><div class="m-date">2024 Q4</div><div class="m-text"><strong>TN Citizen Portal v1</strong> — GovTech platform built and deployed in beta</div></div>
       <div class="milestone"><div class="m-date">Apr 2026</div><div class="m-text"><strong>J.U.L.I.E v1.0</strong> — Local AI assistant with Whisper STT &amp; Ollama LLM goes live</div></div>
       <div class="milestone"><div class="m-date">May 2026</div><div class="m-text"><strong>J.U.L.I.E v2.0</strong> — Claude AI engine, auth layer, voice &amp; global access via julie.cosmohentorq.com</div></div>
-      <div class="milestone"><div class="m-date">Jun 2025</div><div class="m-text"><strong>Paid Intern Programme</strong> — 5 students onboarded as paid interns (Ref: CHIQ/INTERN/2025) — even at zero revenue, we invest in Tamil Nadu's youth</div></div>
+      <div class="milestone"><div class="m-date">Jun 2026</div><div class="m-text"><strong>Paid Intern Programme</strong> — 5 students onboarded as paid interns (Ref: CHIQ/INTERN/2025) — even at zero revenue, we invest in Tamil Nadu's youth</div></div>
       <div class="milestone" style="border-left:3px solid var(--accent);padding-left:16px;margin-left:-16px"><div class="m-date" style="color:var(--teal)">May 2026 🏛️</div><div class="m-text"><strong>Letter to Tamil Nadu CM</strong> — Personally wrote to Hon. Chief Minister Mr. C Joseph Vijay pitching the Digital Governance &amp; Grievance Management Platform. Live demo app submitted. <a href="https://youtu.be/woooAwtk1J4?si=A8agc_l9PKhomqac" target="_blank" style="color:var(--accent);font-weight:600">▶ Watch Demo</a></div></div>
     </div>
   </div>
@@ -701,7 +762,7 @@ nav{
           <div>
             <h4>JULIE B2B SaaS Licensing</h4>
             <p>On-premise AI platform licensed to companies, hospitals, colleges at ₹50K–₹2L/yr. Zero recurring API cost for client = easy sell.</p>
-            <div class="stream-phase">Phase 1 — Q3 2025</div>
+            <div class="stream-phase">Phase 1 — Q3 2026</div>
           </div>
         </div>
         <div class="stream fade-up">
@@ -2008,6 +2069,23 @@ window.addEventListener('scroll',()=>{
   navLinks.forEach(a=>{
     a.style.color = a.getAttribute('href')==='#'+cur ? 'var(--accent)' : '';
   });
+});
+</script>
+
+<script>
+const burger=document.getElementById('burger'),drawer=document.getElementById('drawer');
+if(burger){
+  burger.addEventListener('click',function(){
+    burger.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+}
+function closeMenu(){
+  if(burger) burger.classList.remove('open');
+  if(drawer) drawer.classList.remove('open');
+}
+document.addEventListener('click',function(e){
+  if(burger&&drawer&&!burger.contains(e.target)&&!drawer.contains(e.target)) closeMenu();
 });
 </script>
 </body>
